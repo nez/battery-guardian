@@ -1,0 +1,7 @@
+[Unit]
+Description=Audible low battery alarm at 5 percent
+
+[Service]
+Type=oneshot
+ExecStart="%h/.local/bin/battery-alarm"
+TimeoutStartSec=25

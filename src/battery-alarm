@@ -1,0 +1,51 @@
+#!/usr/bin/python3
+"""Sound once per low-battery episode, even when the default output is muted."""
+
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+
+
+def sound_alarm():
+    subprocess.run(["pactl", "set-sink-mute", "@DEFAULT_SINK@", "0"], check=True)
+    subprocess.run(["pactl", "set-sink-volume", "@DEFAULT_SINK@", "100%"], check=True)
+    for repeat in range(3):
+        subprocess.run([
+            "paplay", "--property=media.role=alarm", "--volume=65536",
+            str(Path.home() / ".local/share/battery-alarm/siren.wav"),
+        ], check=True)
+        if repeat < 2:
+            time.sleep(1)
+
+
+def check_battery(battery, state):
+    capacity = int((battery / "capacity").read_text().strip())
+    if not 0 <= capacity <= 100:
+        raise ValueError(f"Invalid battery capacity: {capacity}")
+    status = (battery / "status").read_text().strip()
+    if capacity > 5 or status in {"Charging", "Full"}:
+        state.unlink(missing_ok=True)
+        return
+    if status != "Discharging" or state.exists():
+        return
+
+    sound_alarm()
+    state.touch()
+    notification = subprocess.run([
+        "notify-send", "--urgency=critical", "Critical battery",
+        f"Battery at {capacity}%. Connect your charger.",
+    ], check=False)
+    if notification.returncode:
+        print("Battery alarm sounded, but the desktop notification failed", file=sys.stderr)
+
+
+if __name__ == "__main__":
+    batteries = sorted(Path("/sys/class/power_supply").glob("BAT*"))
+    if len(batteries) != 1:
+        sys.exit("Expected one BAT* battery in /sys/class/power_supply")
+    check_battery(
+        batteries[0],
+        Path(os.environ["XDG_RUNTIME_DIR"]) / "battery-alarm-notified",
+    )

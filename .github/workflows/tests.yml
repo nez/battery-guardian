@@ -1,0 +1,15 @@
+name: Tests
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check shell syntax
+        run: bash -n install.sh uninstall.sh
+      - name: Run tests without touching battery, audio or power state
+        run: python3 -m unittest discover -s tests -v

@@ -1,0 +1,6 @@
+[Unit]
+Description=Force suspend at 2 percent battery, ignoring inhibitors
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/libexec/battery-critical-suspend

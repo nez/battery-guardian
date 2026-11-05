@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="440" viewBox="0 0 1280 440" role="img" aria-labelledby="title desc">
+  <title id="title">Battery Guardian — Hear it. Plug in. Keep your work.</title>
+  <desc id="desc">A dark banner with an orange battery, a five percent audible alarm and a two percent forced suspend indicator.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#181c25"/>
+      <stop offset="1" stop-color="#090c12"/>
+    </linearGradient>
+    <linearGradient id="charge" x1="0" y1="1" x2="0" y2="0">
+      <stop stop-color="#ff643b"/>
+      <stop offset="1" stop-color="#ffbf69"/>
+    </linearGradient>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M36 0H0V36" fill="none" stroke="#fff" stroke-opacity=".025"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="440" rx="24" fill="url(#bg)"/>
+  <rect width="1280" height="440" rx="24" fill="url(#grid)"/>
+  <circle cx="1090" cy="200" r="220" fill="#ff864a" opacity=".025"/>
+  <circle cx="1090" cy="200" r="170" fill="none" stroke="#ff864a" stroke-opacity=".1"/>
+  <g font-family="DejaVu Sans,Arial,sans-serif">
+    <rect x="64" y="52" width="205" height="29" rx="14" fill="#ffae68" fill-opacity=".1"/>
+    <circle cx="81" cy="67" r="4" fill="#ffae68"/>
+    <text x="94" y="72" fill="#ffba80" font-size="12" font-weight="700" letter-spacing="2">LINUX · SYSTEMD</text>
+    <text x="60" y="164" fill="#f7f6f2" font-size="64" font-weight="700" letter-spacing="-2.5">Battery Guardian</text>
+    <text x="64" y="207" fill="#acb2be" font-size="22">Hear it. Plug in. Keep your work.</text>
+    <path d="M64 251H807" stroke="#fff" stroke-opacity=".1"/>
+    <text x="64" y="318" fill="#ffba80" font-size="48" font-weight="700">5%</text>
+    <text x="166" y="296" fill="#f7f6f2" font-size="16" font-weight="700">MAKE SOME NOISE</text>
+    <text x="166" y="322" fill="#9099ab" font-size="14">Unmute. Full volume. Industrial alarm.</text>
+    <path d="M468 278V332" stroke="#fff" stroke-opacity=".12"/>
+    <text x="502" y="318" fill="#ff6e65" font-size="48" font-weight="700">2%</text>
+    <text x="604" y="296" fill="#f7f6f2" font-size="16" font-weight="700">TIME TO SLEEP</text>
+    <text x="604" y="322" fill="#9099ab" font-size="14">Forced suspend. Inhibitors ignored.</text>
+    <text x="64" y="399" fill="#657084" font-size="12" letter-spacing="1.5">SMALL SCRIPTS. NO DAEMON. NO PYTHON PACKAGES.</text>
+  </g>
+  <g transform="translate(950 95)">
+    <rect x="51" y="0" width="64" height="18" rx="5" fill="#596171"/>
+    <rect x="0" y="24" width="166" height="221" rx="25" fill="#151a23" stroke="#667083" stroke-width="4"/>
+    <rect x="14" y="197" width="138" height="34" rx="12" fill="url(#charge)"/>
+    <path d="M95 64L57 130H86L70 175L115 112H86Z" fill="#ffba80"/>
+    <path d="M-27 270H16L29 253L42 283L55 270H110L123 253L136 283L149 270H192" fill="none" stroke="#ff8a59" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
